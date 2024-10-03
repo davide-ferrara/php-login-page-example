@@ -1,0 +1,124 @@
+:root {
+	--cyano: #27aae1;
+	--cyano-hover: #2390bf;
+	--bg: #252424;
+	--dark-grey: #414040;
+	--white: #d0d0d0;
+	--danger: #ae2424;
+	--danger-hover: #801c1c;
+	--border-radius: 5px;
+}
+
+body {
+	font-family: "Open Sans", system-ui;
+	background-color: var(--bg);
+	margin: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.box {
+	background: var(--dark-grey);
+	color: var(--white);
+	padding: 40px 20px;
+	border-radius: var(--border-radius);
+	max-width: 400px;
+	width: 100%;
+	text-align: center;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+input {
+	background: var(--bg);
+	color: var(--white);
+	text-align: center;
+	width: 100%;
+	border-radius: var(--border-radius);
+	height: 40px;
+	border: none;
+	margin-bottom: 15px;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+input:focus {
+	outline: none;
+	box-shadow: 0 0 1px var(--cyano);
+}
+
+.btn-primary {
+	background: var(--cyano);
+	color: var(--white);
+	border: none;
+	border-radius: var(--border-radius);
+	padding: 10px 20px;
+	cursor: pointer;
+	width: 100%;
+	transition: background 0.3s ease;
+}
+
+.btn-danger {
+	background: var(--danger);
+	color: var(--white);
+	border: none;
+	border-radius: var(--border-radius);
+	padding: 10px 20px;
+	cursor: pointer;
+	width: 100%;
+	transition: background 0.3s ease;
+}
+
+.btn-danger:hover {
+	background: var(--danger-hover);
+}
+
+.btn-primary:hover {
+	background: var(--cyano-hover);
+}
+
+a {
+	color: var(--cyano);
+	text-decoration: none;
+	display: block;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+h1 {
+	color: var(--white);
+}
+
+.navbar {
+	background: var(--dark-grey);
+	width: 100%;
+	position: fixed;
+	top: 0;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: var(--white);
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: var(--cyano);
+}

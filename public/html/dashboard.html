@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="screen" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+		<script>
+			$(document).ready(function () {
+				$("navbar").load("navbar.html");
+			});
+		</script>
+
+		<title>Dashboard</title>
+	</head>
+
+	<body>
+		<navbar class="navbar"></navbar>
+		<div class="box center">
+			<h1 id="welcome"></h1>
+			<button class="btn-danger" onclick="logout()">Logout</button>
+		</div>
+
+		<script>
+			async function fetchUsername() {
+				try {
+					const response = await fetch("http://localhost:8080/api-v1/get-username.php", {
+						method: "GET",
+						credentials: "include",
+					});
+
+					if (response.ok) {
+						const data = await response.json();
+						document.querySelector("#welcome").textContent = `Welcome, ${data.username}!`;
+					} else {
+						window.location.href = "/html/login.html";
+					}
+				} catch (error) {
+					console.error("An error occurred:", error);
+					window.location.href = "/html/login.html";
+				}
+			}
+
+			async function logout() {
+				try {
+					const response = await fetch("http://localhost:8080/api-v1/logout.php", {
+						method: "GET",
+						credentials: "include",
+					});
+
+					if (response.ok) {
+						window.location.href = "/html/login.html";
+					}
+				} catch (error) {
+					console.error("Could not logout: ", error);
+				}
+			}
+
+			fetchUsername();
+		</script>
+	</body>
+</html>

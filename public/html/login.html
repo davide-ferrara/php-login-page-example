@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="screen" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+		<script>
+			$(document).ready(function () {
+				$("navbar").load("navbar.html");
+			});
+		</script>
+		<title>Login</title>
+	</head>
+	<body>
+		<navbar class="navbar"></navbar>
+
+		<div class="box center">
+			<h1><b>Welcome back!</b></h1>
+			<p>We're so excited to see you again!</p>
+			<form id="login-form" method="POST">
+				<input type="text" id="fusername" name="fusername" placeholder="Username" required /><br />
+				<input type="password" id="fpassword" name="fpassword" placeholder="Password" required /><br />
+				<!-- <a href="/">Forgot your password?</a> -->
+				<input id="login-btn" class="btn-primary" type="submit" value="LOGIN" />
+			</form>
+		</div>
+
+		<script>
+			const loginForm = document.querySelector("#login-form");
+
+			loginForm.addEventListener("submit", async (e) => {
+				e.preventDefault();
+
+				const formData = new FormData(loginForm);
+
+				// Crea una stringa con i dati del form in formato URL-encoded
+				const params = new URLSearchParams();
+				formData.forEach((value, key) => {
+					params.append(key, value);
+				});
+
+				// Invia la richiesta POST al server PHP per autenticare l'utente
+				const res = await fetch("http://localhost:8080/api-v1/auth.php", {
+					method: "POST",
+					headers: {
+						"Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+					},
+					body: params, // Invia i dati nel formato richiesto dal server PHP
+				});
+
+				if (res.ok) {
+					window.location.href = "/html/dashboard.html";
+				} else if (res.status === 401) {
+					alert("Invalid credentials, please try again.");
+				} else {
+					alert("An error occurred, please try again.");
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+
+set -e
+
+function help() {
+    echo ------------------
+    echo Available commands
+    echo ------------------
+    echo build
+    echo Build the environment for development.
+    
+}
+
+if [ "$*" = "" ]
+then
+    help
+else
+    $1 "${@:2}"
+fi
